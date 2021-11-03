@@ -1,0 +1,337 @@
+#SingleInstance
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+;SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#MaxThreadsPerHotkey 2
+
+;SetWinDelay, 500
+;SetControlDelay, 500
+SetKeyDelay, 25
+SetMouseDelay, 35
+
+
+*ESC::ExitApp
+
+F1::
+Loop {
+Init()
+
+sleep 250
+; Wizard
+send a
+Loc(100)
+RU(0,3,2)
+
+; Ninja
+send d
+Loc(200)
+RU(2,0,1)
+
+NinjaMonkey()
+Start()
+Done()
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  Functions:  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Functions:
+{
+	RU(x,y,z)
+		{
+			TopUpgrade(x)
+			MiddleUpgrade(y)
+			BottomUpgrade(z)
+		}
+
+	TopUpgrade(LoopCount)
+		{
+			Loop, %LoopCount%
+			Send, ,
+		}
+
+	MiddleUpgrade(LoopCount)
+		{
+			Loop, %LoopCount%
+			Send, .
+		}
+
+	BottomUpgrade(LoopCount)
+		{
+			Loop, %LoopCount%
+			Send, /
+		}
+
+	Start()
+		{
+			sleep 250
+			Send, {SPACE}{SPACE}
+			; Clear Upgrade Windo
+			MouseClick, left,  858,  118
+		}
+
+Init()
+	{
+			MouseClick, left, 835, 935
+			Sleep, 1500
+			MouseClick, left, 500, 250
+			Sleep, 1000
+			MouseClick, left, 630, 400
+			Sleep 1000
+			MouseClick, left, 1290, 450
+			Sleep 4000
+			MouseClick, left, 960, 500
+			Sleep 2000
+	}
+	
+
+Done()
+		{
+			Loop
+				{
+					ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight,  *20 BloonsDeflationNextButton.png
+					if ErrorLevel = 0
+						break ; image was found break loop and continue
+					
+					ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight,  *20 BloonsDeflationHome.png
+					if ErrorLevel = 0
+						break ; image was found break loop and continue
+				
+					ImageSearch, FoundX, FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight,  *20 BloonsDeflationLevelUp.png
+					if ErrorLevel = 0
+						MouseClick, left, 950, 900, 10
+					
+				}
+			MouseClick, left, 950, 900
+			Sleep, 2000
+			MouseClick, left, 700, 850
+			Sleep, 3000
+		}
+		}
+
+Loc(x)
+{
+	Switch x
+		{
+		Case 100:mouseclick, left, 469, 391,2
+		Case 200:MouseClick, left, 469, 526,2
+		Case 1:	MouseClick, left,  675,  385, 2
+		Case 2:	MouseClick, left,  666,  149, 2
+		Case 3:	MouseClick, left,  678,  550, 2
+		Case 4:	MouseClick, left,  678,  727, 2
+		Case 5: MouseClick, left,  831,  546, 2
+		Case 6: MouseClick, left,  265,  365, 2
+		Case 7: MouseClick, left,  265,  535, 2
+		}
+
+}
+
+DartMonkey()
+{
+Send, q
+Loc(1)
+RU(0,2,4)
+Send, q
+Loc(2)
+RU(0,2,4)
+Send, q
+Loc(3)
+RU(0,2,4)
+Send, q
+Loc(4)
+RU(0,2,4)
+Send, q
+Loc(5)
+RU(0,2,4)
+Send, q
+Loc(6)
+Send, q
+Loc(7)
+}
+return
+
+SuperMonkey()
+{
+Send, s
+Loc(1)
+RU(2,0,2)
+Send, s
+Loc(2)
+RU(0,1,0)
+}
+return
+
+GlueMonkey()
+{
+Send, y
+Loc(1)
+RU(4,2,0)
+Send, y
+Loc(2)
+RU(4,1,0)
+Send, y
+Loc(3)
+RU(2,1,0)
+}
+return
+
+Alchemist()
+{
+Send, f
+Loc(1)
+RU(4,2,0)
+Send, f
+Loc(2)
+RU(4,2,0)
+Send, f
+Loc(3)
+RU(3,2,0)
+Send, f
+Loc(4)
+RU(2,1,0)
+}
+return
+
+Druid()
+{
+Send, g
+Loc(1)
+RU(0,2,4)
+Send, g
+Loc(2)
+RU(0,2,4)
+Send, g
+Loc(3)
+RU(0,2,4)
+Send, g
+Loc(4)
+RU(0,2,3)
+Send, g
+Loc(5)
+RU(0,0,3)
+}
+return
+
+MonkeyVillage()
+{
+Send, k
+Loc(1)
+RU(4,0,2)
+Send, k
+Loc(2)
+RU(4,0,2)
+Send, k
+Loc(3)
+RU(0,1,0)
+Send, k
+Loc(4)
+RU(0,0,0)
+}
+return
+
+MonkeyAce()
+{
+Send, v
+Loc(1)
+RU(4,0,0)
+Send, v
+Loc(2)
+RU(4,0,0)
+Send, v
+Loc(3)
+RU(4,0,0)
+Send, v
+Loc(4)
+RU(0,2,1)
+}
+return
+
+Mortar()
+{
+Send, n
+Loc(1)
+RU(3,2,0)
+Send, n
+Loc(2)
+RU(3,2,0)
+Send, n
+Loc(3)
+RU(3,2,0)
+Send, n
+Loc(4)
+RU(3,2,0)
+Send, n
+Loc(5)
+RU(0,2,2)
+}
+return
+
+Boomerang()
+{
+Send, w
+Loc(1)
+RU(2,0,4)
+Send, w
+Loc(2)
+RU(2,0,4)
+Send, w
+Loc(3)
+RU(2,0,4)
+Send, w
+Loc(4)
+RU(2,0,3)
+Send, w
+Loc(5)
+RU(0,0,2)
+}
+return
+
+TackShooter()
+{
+Send, r
+Loc(1)
+RU(4,0,2)
+Send, r
+Loc(2)
+RU(4,0,2)
+Send, r
+Loc(3)
+RU(4,0,2)
+Send, r
+Loc(4)
+RU(3,0,2)
+Send, r
+Loc(5)
+RU(1,0,0)
+}
+return
+
+IceMonkey()
+{
+Send, t
+Loc(1)
+RU(4,2,0)
+Send, t
+Loc(2)
+RU(4,2,0)
+Send, t
+Loc(3)
+RU(4,2,0)
+Send, t
+Loc(4)
+RU(2,2,0)
+}
+return
+
+NinjaMonkey()
+{
+send d
+Loc(1)
+RU(4,2,0)
+send d
+Loc(2)
+RU(4,2,0)
+send d
+Loc(3)
+RU(4,2,0)
+}
